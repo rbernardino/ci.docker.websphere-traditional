@@ -20,7 +20,9 @@ FROM ubuntu:16.04
 ARG user=was
 ARG group=was
 RUN groupadd $group && useradd $user -g $group -m \
-    && mkdir /work && chown -R $user:$group /work
+    && mkdir /work && chown -R $user:$group /work \
+    && unlink /bin/sh \
+    && ln -s /bin/bash /bin/sh
 USER $user
 
 ADD was.tar /
